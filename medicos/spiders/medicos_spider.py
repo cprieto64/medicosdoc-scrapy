@@ -2,7 +2,7 @@ import scrapy
 from scrapy_demo.items import QuoteItem
 
 class DemoSpider(scrapy.Spider):
-    name = 'demo_spider'
+    name = 'demo_spiderdos'
     allowed_domains = ['quotes.toscrape.com']
 
     def start_requests(self):
