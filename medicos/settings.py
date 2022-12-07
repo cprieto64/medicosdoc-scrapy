@@ -7,10 +7,12 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+# commit
+
 BOT_NAME = 'medicos'
 
 SPIDER_MODULES = ['medicos.spiders']
-NEWSPIDER_MODULE = 'medicos.spiders'
+NEWSPIDER_MODULE = 'medicos.spiders' 
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
