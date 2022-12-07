@@ -19,7 +19,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 
 
-client = MongoClient('mongodb+srv://shlord:killer258@cluster0.mamup.mongodb.net')
+client = MongoClient('mongodb+srv://user:pass@cluster0.mamup.mongodb.net')
 db = client['medicosdoc']
 col = db['instituciones-scrapeops']
 
