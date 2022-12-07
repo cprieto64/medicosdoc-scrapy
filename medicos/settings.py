@@ -19,6 +19,21 @@ NEWSPIDER_MODULE = 'medicos.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
+# Add Your ScrapeOps API Key
+SCRAPEOPS_API_KEY = 'YOUR_API_KEY'
+
+# Add In The ScrapeOps Extension
+EXTENSIONS = {
+        'scrapeops_scrapy.extension.ScrapeOpsMonitor': 500, 
+        }
+
+# Update The Download Middlewares
+DOWNLOADER_MIDDLEWARES = {
+'scrapeops_scrapy.middleware.retry.RetryMiddleware': 550,
+'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
+}
+
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
