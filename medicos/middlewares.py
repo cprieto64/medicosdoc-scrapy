@@ -17,7 +17,15 @@ class MedicosSpiderMiddleware:
     @classmethod
     def from_crawler(cls, crawler):
         # This method is used by Scrapy to create your spiders.
-        s = cls()
+        """Create and initialize a spider instance from a Scrapy crawler.
+        
+        Args:
+            cls (type): The class of the spider being instantiated.
+            crawler (scrapy.crawler.Crawler): The Scrapy crawler object.
+        
+        Returns:
+            Spider: An instance of the spider class with initialized signal connections.
+        """        s = cls()
         crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
         return s
 
@@ -26,6 +34,26 @@ class MedicosSpiderMiddleware:
         # middleware and into the spider.
 
         # Should return None or raise an exception.
+        """Process the input for the spider.
+        
+        Args:
+            response (object): The response object that goes through the spider middleware.
+            spider (object): The spider instance processing the response.
+        
+        Returns:
+            """
+            Process the output of a spider after it has processed a response.
+            
+            Args:
+                response: The response object that was processed by the spider.
+                result (Iterable): The results returned from the spider after processing the response.
+                spider: The spider instance that processed the response.
+            
+            Returns:
+                Iterable: An iterable of Request or item objects yielded from the input result.
+            """
+            None: This method should return None or raise an exception.
+        """
         return None
 
     def process_spider_output(self, response, result, spider):
@@ -41,6 +69,17 @@ class MedicosSpiderMiddleware:
         # (from other spider middleware) raises an exception.
 
         # Should return either None or an iterable of Request or item objects.
+        """
+        Process spider exceptions and handle the response.
+        
+        Args:
+            response (object): The response object from the spider.
+            exception (Exception): The exception raised during spider processing.
+            spider (object): The spider instance that raised the exception.
+        
+        Returns:
+            None or iterable: None or an iterable of Request or item objects.
+        """
         pass
 
     def process_start_requests(self, start_requests, spider):
@@ -49,25 +88,89 @@ class MedicosSpiderMiddleware:
         # that it doesn’t have a response associated.
 
         # Must return only requests (not items).
+        """Process the start requests of a spider.
+        
+        Args:
+            start_requests (iterable): An iterable of Request objects to process.
+            spider (Spider): The spider instance associated with these requests.
+        
+        Returns:
+            generator: A generator yielding Request objects.
+        """
         for r in start_requests:
             yield r
 
     def spider_opened(self, spider):
+        """
+        Handles the event when a spider is opened.
+        
+        Args:
+            spider (Spider): The spider instance that has been opened.
+        
+        Returns:
+            None: This method doesn't return anything.
+        """
         spider.logger.info('Spider opened: %s' % spider.name)
 
+"""
+Creates and initializes a spider instance from a crawler.
+
+Args:
+    cls (class): The class of the spider being instantiated.
+    crawler (scrapy.crawler.Crawler): The crawler object associated with this spider.
+
+Returns:
+    Spider: An instance of the spider class with initialized signals.
+"""
 
 class MedicosDownloaderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the downloader middleware does not modify the
+    """Processes a request in the downloader middleware.
+    
+    Args:
+        request (Request): The request object to be processed.
+        spider (Spider): The spider instance that generated the request.
+    
+    Returns:
+        None or Response or Request: 
+        - None to continue processing the request.
+        - Response object to return a response directly.
+        - Request object to return a new request.
+        - May also raise IgnoreRequest to trigger process_exception() methods.
+    """
     # passed objects.
 
     @classmethod
     def from_crawler(cls, crawler):
         # This method is used by Scrapy to create your spiders.
         s = cls()
+        """Process an exception that occurred during request handling.
+        
+        Args:
+            request (Request): The request that caused the exception.
+            exception (Exception): The exception that was raised.
+            spider (Spider): The spider instance that generated the request.
+        
+        Returns:
+            Optional[Union[Response, Request]]: None to continue processing the exception,
+            a Response object to stop the process_exception() chain, or a Request object
+            to stop the process_exception() chain.
+        """
         crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
         return s
 
+    """Process the response returned from the downloader.
+    
+    Args:
+        self: The instance of the class containing this method.
+        request (Request): The request object that generated this response.
+        response (Response): The response object returned from the downloader.
+        spider (Spider): The spider instance that is handling the response.
+    
+    Returns:
+        Response: The processed response object, which can be modified if needed.
+    """
     def process_request(self, request, spider):
         # Called for each request that goes through the downloader
         # middleware.
@@ -81,6 +184,14 @@ class MedicosDownloaderMiddleware:
         return None
 
     def process_response(self, request, response, spider):
+        """Called when a spider is opened.
+        
+        Args:
+            spider (Spider): The spider instance that was opened.
+        
+        Returns:
+            None: This method doesn't return anything.
+        """
         # Called with the response returned from the downloader.
 
         # Must either;
