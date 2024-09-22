@@ -77,7 +77,15 @@ class MedicosDoc(CrawlSpider):
 
     def parse_item(self, response):
 
-        nombre_premium = response.xpath('.//div[@class="headerprofilepremium"]/h1/text()').get()
+        """Parses and processes doctor information from a web page response.
+        
+        Args:
+            self: The instance of the class containing this method.
+            response (scrapy.http.Response): The response object containing the web page data.
+        
+        Returns:
+            None: This method doesn't return a value, but updates a database collection with doctor information.
+        """        nombre_premium = response.xpath('.//div[@class="headerprofilepremium"]/h1/text()').get()
          
         
         if nombre_premium is None:
