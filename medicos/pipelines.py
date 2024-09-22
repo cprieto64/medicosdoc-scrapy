@@ -10,4 +10,14 @@ from itemadapter import ItemAdapter
 
 class MedicosPipeline:
     def process_item(self, item, spider):
+        """
+        Process a scraped item.
+        
+        Args:
+            item (dict): The scraped item to be processed.
+            spider (scrapy.Spider): The spider that scraped the item.
+        
+        Returns:
+            dict: The processed item, unmodified in this implementation.
+        """
         return item
